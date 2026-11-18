@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chiikawa desktop pet</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main id="stage" aria-label="화면 위를 돌아다니는 토끼">
+      <div id="pet" role="button" aria-label="토끼를 클릭해 인사하기" tabindex="0">
+        <svg class="rabbit" viewBox="0 0 120 140" aria-hidden="true">
+          <ellipse class="ear ear-left" cx="43" cy="35" rx="13" ry="34" transform="rotate(-13 43 35)" />
+          <ellipse class="ear ear-right" cx="76" cy="32" rx="13" ry="36" transform="rotate(11 76 32)" />
+          <ellipse class="ear-inner" cx="43" cy="35" rx="5" ry="24" transform="rotate(-13 43 35)" />
+          <ellipse class="ear-inner" cx="76" cy="32" rx="5" ry="25" transform="rotate(11 76 32)" />
+          <ellipse class="body" cx="60" cy="99" rx="30" ry="32" />
+          <ellipse class="head" cx="60" cy="69" rx="35" ry="31" />
+          <ellipse class="cheek" cx="39" cy="77" rx="7" ry="4" />
+          <ellipse class="cheek" cx="81" cy="77" rx="7" ry="4" />
+          <circle class="eye" cx="49" cy="67" r="2.5" />
+          <circle class="eye" cx="71" cy="67" r="2.5" />
+          <path class="mouth" d="M57 73 Q60 76 63 73" />
+          <ellipse class="foot foot-left" cx="45" cy="126" rx="15" ry="7" />
+          <ellipse class="foot foot-right" cx="75" cy="126" rx="15" ry="7" />
+          <path class="brow" d="M43 58q5-4 9 0M68 58q5-4 9 0" />
+        </svg>
+        <div class="shadow"></div>
+      </div>
+      <div id="bubble" aria-live="polite">ヤハ！</div>
+    </main>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

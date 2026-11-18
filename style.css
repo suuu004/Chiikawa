@@ -1,0 +1,36 @@
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: transparent; }
+body { user-select: none; }
+#stage { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+#pet {
+  position: absolute;
+  left: 8px;
+  top: calc(100vh - 156px);
+  width: 96px;
+  height: 148px;
+  cursor: grab;
+  transform: scaleX(1);
+  transform-origin: center;
+  outline: none;
+  touch-action: none;
+}
+#pet.dragging { cursor: grabbing; }
+.rabbit { position: absolute; inset: 0 0 8px; width: 100%; height: 136px; overflow: visible; filter: drop-shadow(0 2px 1px #0002); }
+.ear, .head, .body, .foot { fill: #ffd94a; stroke: #e9bd37; stroke-width: 1.5; }
+.ear-inner { fill: #f6a7aa; }
+.eye { fill: #40372d; }
+.cheek { fill: #f39a94; opacity: .85; }
+.mouth { fill: none; stroke: #7d5540; stroke-width: 2; stroke-linecap: round; }
+.brow { fill: none; stroke: #6b543d; stroke-width: 2; stroke-linecap: round; }
+.foot { transform-box: fill-box; transform-origin: center top; }
+.shadow { position: absolute; width: 62px; height: 8px; bottom: 0; left: 17px; background: #0002; border-radius: 50%; filter: blur(2px); }
+#pet.walking .foot-left { animation: step .28s infinite alternate ease-in-out; }
+#pet.walking .foot-right { animation: step .28s infinite alternate-reverse ease-in-out; }
+#pet.walking .rabbit { animation: bob .28s infinite alternate ease-in-out; }
+#pet.idle .rabbit { animation: breathe 1.8s infinite ease-in-out; transform-origin: 50% 100%; }
+#bubble { position: absolute; display: none; bottom: 158px; left: 28px; padding: 5px 9px; border-radius: 12px; background: #fff; color: #444; font: 13px system-ui, sans-serif; white-space: nowrap; box-shadow: 0 2px 8px #0002; }
+#bubble.show { display: block; animation: pop .18s ease-out; }
+@keyframes step { to { transform: rotate(22deg) translateY(2px); } }
+@keyframes bob { to { transform: translateY(-3px) rotate(1deg); } }
+@keyframes breathe { 50% { transform: scale(1.015, .99); } }
+@keyframes pop { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }

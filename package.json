@@ -1,0 +1,13 @@
+{
+  "name": "chiikawa-desktop-pet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A tiny transparent desktop pet prototype",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^45.3.4"
+  }
+}
