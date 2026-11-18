@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain, screen } = require('electron');
+const fs = require('node:fs');
 const path = require('node:path');
 
 let petWindow;
@@ -6,6 +7,24 @@ let petBounds = { x: 0, y: 0, width: 0, height: 0 };
 let isIgnoringMouse = true;
 let isDraggingPet = false;
 let pointerTimer;
+
+function getGifSequence() {
+  const assetsDirectory = path.join(__dirname, 'assets');
+  let filenames;
+  try {
+    filenames = fs.readdirSync(assetsDirectory, { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name);
+  } catch {
+    return [];
+  }
+
+  const numbered = filenames
+    .filter((name) => /^usagi-\d+\.gif$/i.test(name))
+    .sort((a, b) => Number(a.match(/\d+/)[0]) - Number(b.match(/\d+/)[0]));
+  if (numbered.length > 0) return numbered;
+  return filenames.includes('usagi-walk.gif') ? ['usagi-walk.gif'] : [];
+}
 
 function updatePetBounds(_event, bounds) {
   if (!bounds || ![bounds.x, bounds.y, bounds.width, bounds.height].every(Number.isFinite)) return;
@@ -68,6 +87,7 @@ function createWindow() {
 }
 
 app.whenReady().then(createWindow);
+ipcMain.handle('pet:get-gif-sequence', getGifSequence);
 app.on('before-quit', () => clearInterval(pointerTimer));
 app.on('window-all-closed', () => app.quit());
 app.on('activate', () => {

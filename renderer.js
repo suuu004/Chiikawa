@@ -15,9 +15,32 @@ let pointerOffset = { x: 0, y: 0 };
 let movedDuringPress = false;
 const speed = 75; // CSS pixels per second
 const dragThreshold = 5;
+const gifDurationMs = 3000;
+let gifSequence = [];
+let gifIndex = 0;
+let gifTimer;
 
-rabbitResource.addEventListener('load', () => pet.classList.add('has-resource'));
-rabbitResource.addEventListener('error', () => pet.classList.remove('has-resource'));
+function syncRabbitResource() {
+  pet.classList.toggle('has-resource', rabbitResource.complete && rabbitResource.naturalWidth > 0);
+}
+
+rabbitResource.addEventListener('load', () => {
+  syncRabbitResource();
+  clearTimeout(gifTimer);
+  if (gifSequence.length > 1) {
+    gifTimer = setTimeout(() => {
+      gifIndex = (gifIndex + 1) % gifSequence.length;
+      rabbitResource.src = `./assets/${gifSequence[gifIndex]}`;
+    }, gifDurationMs);
+  }
+});
+rabbitResource.addEventListener('error', syncRabbitResource);
+
+window.petApp.getGifSequence().then((files) => {
+  gifSequence = files;
+  if (gifSequence.length > 0) rabbitResource.src = `./assets/${gifSequence[0]}`;
+  else syncRabbitResource();
+}).catch(() => syncRabbitResource());
 
 function reportPetBounds(time) {
   if (time - lastBoundsReport < 50) return;

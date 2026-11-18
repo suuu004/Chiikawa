@@ -2,5 +2,6 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('petApp', {
   reportPetBounds: (bounds) => ipcRenderer.send('pet:bounds', bounds),
-  setDragging: (dragging) => ipcRenderer.send('pet:dragging', dragging)
+  setDragging: (dragging) => ipcRenderer.send('pet:dragging', dragging),
+  getGifSequence: () => ipcRenderer.invoke('pet:get-gif-sequence')
 });
