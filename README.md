@@ -26,4 +26,4 @@ Chiikawa/
 
 Electron 버전은 `package.json`에 지정되어 있고 `package-lock.json`으로 설치 버전이 고정됩니다.
 
-현재 캐릭터는 `index.html`에 포함된 SVG 시안입니다. 직접 준비한 스프라이트가 있다면 `assets/` 폴더를 만든 뒤 SVG를 이미지 요소로 교체해 연결하면 됩니다.
+캐릭터 리소스는 `assets/usagi-walk.gif`에 넣으면 자동으로 표시됩니다. 이 파일이 없으면 `index.html`에 포함된 SVG 시안이 대신 표시됩니다. 리소스 규격은 `assets/README.md`를 참고하세요.

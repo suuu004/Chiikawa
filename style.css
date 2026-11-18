@@ -16,6 +16,9 @@ body { user-select: none; }
 }
 #pet.dragging { cursor: grabbing; }
 .rabbit { position: absolute; inset: 0 0 8px; width: 100%; height: 136px; overflow: visible; filter: drop-shadow(0 2px 1px #0002); }
+.rabbit-resource { display: none; object-fit: contain; }
+#pet.has-resource .rabbit-resource { display: block; }
+#pet.has-resource .rabbit-fallback { display: none; }
 .ear, .head, .body, .foot { fill: #ffd94a; stroke: #e9bd37; stroke-width: 1.5; }
 .ear-inner { fill: #f6a7aa; }
 .eye { fill: #40372d; }

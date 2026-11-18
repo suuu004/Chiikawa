@@ -1,6 +1,7 @@
 const stage = document.querySelector('#stage');
 const pet = document.querySelector('#pet');
 const bubble = document.querySelector('#bubble');
+const rabbitResource = document.querySelector('#rabbit-resource');
 
 let x = 8;
 let y = 0;
@@ -14,6 +15,9 @@ let pointerOffset = { x: 0, y: 0 };
 let movedDuringPress = false;
 const speed = 75; // CSS pixels per second
 const dragThreshold = 5;
+
+rabbitResource.addEventListener('load', () => pet.classList.add('has-resource'));
+rabbitResource.addEventListener('error', () => pet.classList.remove('has-resource'));
 
 function reportPetBounds(time) {
   if (time - lastBoundsReport < 50) return;
